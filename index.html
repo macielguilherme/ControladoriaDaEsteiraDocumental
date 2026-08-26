@@ -1416,7 +1416,6 @@
         <ul>
           <li><span><strong>Demo</strong></span></li>
           <li><span><strong>99999 | DEMO - POC CODEBA</strong></span></li>
-        
           <li>
             <a href="../login" title="Pesquisa">
               <img src="images/icons/topnav/mainWebsite.png" alt="">
@@ -1446,25 +1445,21 @@
       </ol>
     </nav>
 
-   <!-- Page Head -->
-<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-  <div>
-    <h4 style="margin:0;font-size:1.15rem;color:#0f172a;">Sentinela — Controladoria da Esteira Documental</h4>
-    <p class="text-muted small" style="margin:4px 0 0;font-size:0.75rem;">Monitoramento das movimentações de documentos e caixas na esteira de gestão documental</p>
-  </div>
-  <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
-    <div style="text-align:right;line-height:1.3;">
-      <span style="font-size:0.65rem;color:#6c757d;">
-        <b>Dados atualizados em</b><br>
-        <span id="lastUpdate" style="font-weight:600;color:#2c363f;">26/08/2026 às 11:39</span>
-      </span>
+    <!-- Page Head -->
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+      <div>
+        <h4 style="margin:0;font-size:1.15rem;color:#0f172a;">Sentinela — Controladoria da Esteira Documental</h4>
+        <p class="text-muted small" style="margin:4px 0 0;font-size:0.75rem;">Monitoramento das movimentações de documentos e caixas na esteira de gestão documental</p>
+      </div>
+      <div>
+        <span class="text-muted small mr-2" style="font-size:0.65rem;">
+          <b>Dados atualizados em</b><br><span id="lastUpdate">10/07/2026 às 14:32</span>
+        </span>
+        <button class="btn-sos btn-sos-sm btn-sos-outline-secondary" onclick="refreshData()">
+          <i class="fas fa-sync"></i> Atualizar
+        </button>
+      </div>
     </div>
-    <button class="btn-sos btn-sos-sm btn-sos-primary" onclick="refreshData()" style="white-space:nowrap;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px;"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 9A7 7 0 0 1 18 6l2 1M18 15a7 7 0 0 1-12 3l-2-1"/></svg>
-      Atualizar
-    </button>
-  </div>
-</div>
 
     <!-- ===== MODE SWITCHER ===== -->
     <section class="card mode-switcher">
@@ -1606,7 +1601,32 @@
       <div class="kpis" id="kpiGrid"></div>
 
       <!-- Tabs -->
-      
+      <section class="card tabs-wrap">
+        <div class="tabs">
+          <button class="tab active" data-tab="overview" onclick="openTab('overview',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+            Posições monitoradas
+          </button>
+          <button class="tab" data-tab="transitions" onclick="openTab('transitions',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h13M14 4l3 3-3 3M20 17H7M10 14l-3 3 3 3"/></svg>
+            Transições registradas
+          </button>
+          <button class="tab" data-tab="nomovement" onclick="openTab('nomovement',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+            Sem movimentação
+            <span class="tab-badge" id="noMovementBadge">0</span>
+          </button>
+          <button class="tab" data-tab="bottlenecks" onclick="openTab('bottlenecks',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 3h4l1 7 4 4v3H5v-3l4-4zM9 21h6"/></svg>
+            Gargalos e impedimentos
+            <span class="tab-badge" id="riskBadge">0</span>
+          </button>
+          <button class="tab" data-tab="history" onclick="openTab('history',this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v6h6M12 7v5l3 2"/></svg>
+            Histórico detalhado
+          </button>
+        </div>
+      </section>
 
       <!-- ===== OVERVIEW PANEL ===== -->
       <div id="overview" class="panel active">
@@ -1850,8 +1870,7 @@
             {name:'Aguardando Assinatura',code:'ETP-AAS',order:6,current:120,entered:326,exited:206,passed:326,stopped:0,last:'10/07/2026 14:11',state:'normal',active:true,final:false},
             {name:'Finalizado',code:'ETP-FIN',order:7,current:326,entered:326,exited:0,passed:326,stopped:0,last:'10/07/2026 14:05',state:'done',active:true,final:true},
             {name:'Revisão Especial',code:'ETP-RES',order:null,current:0,entered:0,exited:0,passed:0,stopped:0,last:'Sem movimentação no período',state:'normal',active:true,final:false},
-            {name:'Aguardando Publicação',code:'ETP-APU',order:null,current:0,entered:0,exited:0,passed:0,stopped:0,last:'Sem movimentação no período',state:'normal',active:true,final:false},
-            {name:'Validação Legada',code:'ETP-VLG',order:null,current:0,entered:0,exited:0,passed:73,stopped:0,last:'18/06/2026 17:02',state:'normal',active:false,final:false}
+            {name:'Aguardando Publicação',code:'ETP-APU',order:null,current:0,entered:0,exited:0,passed:0,stopped:0,last:'Sem movimentação no período',state:'normal',active:true,final:false}
           ],
           transitions:[
             {from:'Recebido',to:'Imagens Disponíveis',count:1162,pct:100,last:'10/07/2026 14:29',owner:'Rotina de ingestão'},
@@ -1903,8 +1922,7 @@
             {name:'Em Atendimento',code:'STS-EAT',order:5,current:86,entered:305,exited:219,passed:305,stopped:0,last:'10/07/2026 13:58',state:'normal',active:true,final:false},
             {name:'Atendimento Registrado',code:'STS-ATR',order:6,current:219,entered:219,exited:0,passed:219,stopped:0,last:'10/07/2026 13:42',state:'normal',active:true,final:false},
             {name:'Em Transferência',code:'STS-ETF',order:null,current:0,entered:0,exited:0,passed:0,stopped:0,last:'Sem movimentação no período',state:'normal',active:true,final:false},
-            {name:'Aguardando Expurgo',code:'STS-AEX',order:null,current:0,entered:0,exited:0,passed:0,stopped:0,last:'Sem movimentação no período',state:'normal',active:true,final:false},
-            {name:'Status Legado',code:'STS-LGD',order:null,current:0,entered:0,exited:0,passed:48,stopped:0,last:'24/06/2026 16:10',state:'normal',active:false,final:false}
+            {name:'Aguardando Expurgo',code:'STS-AEX',order:null,current:0,entered:0,exited:0,passed:0,stopped:0,last:'Sem movimentação no período',state:'normal',active:true,final:false}
           ],
           transitions:[
             {from:'Recebida na Unidade',to:'Em Preparação',count:759,pct:100,last:'10/07/2026 14:30',owner:'Equipe de guarda'},
@@ -2433,10 +2451,13 @@
     function renderPipeline(){
       const el=document.getElementById('pipeline');
       const activeStages=currentData.stages.filter(s=>s.active);
+      const isDoc=currentMode==='document';
+      const prefix=isDoc ? 'Etapa' : 'Status';
+      
       el.innerHTML=activeStages.map((s)=>{
         const noMovement=s.entered===0 && s.exited===0;
         const state=[s.state!=='normal'?s.state:'',noMovement?'no-movement':''].join(' ');
-        const orderDisplay = s.order ? `Fase ${s.order}` : 'Sem fase definida';
+        const orderDisplay = s.order ? `${prefix} ${s.order}` : 'Sem fase definida';
         return `<article class="stage ${state}" onclick="openDetail('${s.name}')" title="Clique para detalhar ${s.name}">
           <div class="stage-topline">
             <div class="stage-num">${orderDisplay}</div>
